@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = () => {
+const Button = ({ text = "See Certifications", href = "#certifications", type = "type--C" }) => {
   return (
     <StyledWrapper>
       <div className="container">
-        <a href="#" className="button type--C">
+        <a href={href} className={`button ${type}`}>
           <div className="button__line" />
           <div className="button__line" />
-          <span className="button__text">RESUME</span>
+          <span className="button__text">{text}</span>
           <div className="button__drow1" />
           <div className="button__drow2" />
         </a>
@@ -19,16 +19,16 @@ const Button = () => {
 
 const StyledWrapper = styled.div`
   .type--A {
-    --line_color: #555555;
-    --back_color: #ffecf6;
+    --line_color: #cbd5e1;
+    --back_color: rgba(255, 255, 255, 0.2);
   }
   .type--B {
-    --line_color: #1b1919;
-    --back_color: #e9ecff;
+    --line_color: #38bdf8;
+    --back_color: rgba(56, 189, 248, 0.35);
   }
   .type--C {
-    --line_color: #153bd3ff;
-    --back_color: #0d00c075;
+    --line_color: #818cf8;
+    --back_color: rgba(99, 102, 241, 0.35);
   }
   .button {
     position: relative;
@@ -262,13 +262,9 @@ const StyledWrapper = styled.div`
 
   .container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    /* Hapus height: 300px */
-    /* Biarkan ikut parent section */
   }
-  .button:not(:last-child) {
-    margin-bottom: 64px;
-  }`;
+`;
 
 export default Button;
