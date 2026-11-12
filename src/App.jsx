@@ -22,6 +22,7 @@ import TypewriterText from "./components/TypewriterText";
 import BorderBeam from "./components/BorderBeam";
 import NavTabs from "./components/NavTabs";
 import ScanText from "./components/ScanText";
+import BackToTop from "./components/BackToTop";
 
 const techStack = [
   { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/white" },
@@ -235,8 +236,8 @@ export default function App() {
             >
               <ScanText
                 text={"Portfolio"}
-                color={"#f1d5ac"}
-                dimColor={"#857467"}
+                color={"#6366f1"}
+                dimColor={"#4338ca"}
                 duration={4}
                 beamWidth={50}
                 paused={false}
@@ -356,7 +357,7 @@ export default function App() {
             <div className="lg:col-span-7 flex flex-col justify-center">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.12] text-white tracking-tight">
                 Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-sky-300 to-indigo-300">Riski Mardianto</span>,
-                <br className="hidden sm:inline" /> a Full-Stack & AI Engineer
+                <br className="hidden sm:inline" /> a Software Developer
               </h1>
               <p className="mt-6 text-slate-300 text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-2xl font-light">
                 I build intelligent, end-to-end web applications and automate complex workflows using modern AI technologies.
@@ -426,7 +427,7 @@ export default function App() {
           {/* About */}
           <section
             id="about"
-            className="scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center rounded-2xl p-5 sm:p-7 bg-slate-900/60 backdrop-blur-md border border-slate-800/80 shadow-2xl snap-section"
+            className="scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center rounded-2xl p-4 sm:p-6 bg-slate-900/60 backdrop-blur-md border border-slate-800/80 shadow-2xl snap-section"
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-white">About Me</h2>
             <p className="mt-3 text-slate-300 w-full text-sm sm:text-base leading-relaxed">
@@ -438,14 +439,14 @@ export default function App() {
 
             <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
               {/* Experience */}
-              <div className="p-4 sm:p-5 border border-slate-800/90 rounded-xl bg-slate-950/60 hover:bg-slate-900/70 hover:border-indigo-500/50 transition duration-300 flex flex-col items-center text-center">
+              <div className="p-3 sm:p-4 border border-slate-800/90 rounded-xl bg-slate-950/60 hover:bg-slate-900/70 hover:border-indigo-500/50 transition duration-300 flex flex-col items-center text-center">
                 <FaLaptopCode className="w-8 h-8 text-indigo-400 mb-2" aria-hidden="true" />
                 <div className="text-base font-semibold text-white">Experience</div>
                 <div className="mt-0.5 text-slate-300 text-sm font-medium">2+ Years Professional</div>
               </div>
 
               {/* Specialties */}
-              <div className="p-4 sm:p-5 border border-slate-800/90 rounded-xl bg-slate-950/60 hover:bg-slate-900/70 hover:border-indigo-500/50 transition duration-300 flex flex-col items-center text-center">
+              <div className="p-3 sm:p-4 border border-slate-800/90 rounded-xl bg-slate-950/60 hover:bg-slate-900/70 hover:border-indigo-500/50 transition duration-300 flex flex-col items-center text-center">
                 <div className="flex gap-2.5 mb-2">
                   <FaBrain className="w-7 h-7 text-purple-400" aria-hidden="true" title="AI" />
                   <FaLayerGroup className="w-7 h-7 text-sky-400" aria-hidden="true" title="Full-Stack" />
@@ -456,7 +457,7 @@ export default function App() {
               </div>
 
               {/* Education */}
-              <div className="p-4 sm:p-5 border border-slate-800/90 rounded-xl bg-slate-950/60 hover:bg-slate-900/70 hover:border-indigo-500/50 transition duration-300 flex flex-col items-center text-center">
+              <div className="p-3 sm:p-4 border border-slate-800/90 rounded-xl bg-slate-950/60 hover:bg-slate-900/70 hover:border-indigo-500/50 transition duration-300 flex flex-col items-center text-center">
                 <FaUserGraduate className="w-8 h-8 text-emerald-400 mb-2" aria-hidden="true" />
                 <div className="text-base font-semibold text-white">Education</div>
                 <div className="mt-0.5 text-slate-300 text-sm font-medium">B.Sc. in Computer Engineering</div>
@@ -590,6 +591,9 @@ export default function App() {
           {/* Contact */}
           <Contact />
         </main>
+
+        {/* Floating Back to Top Button */}
+        <BackToTop />
       </div>
     </div>
   </>
