@@ -14,6 +14,7 @@ import {
 import { AnimatePresence, motion as Motion } from "framer-motion";
 import ibmLogo from "./assets/ibm-logo.svg";
 import Button from "./components/Button";
+import ResumeButton from "./components/ResumeButton";
 import Contact from "./components/Contact";
 import Pattern from "./components/Pattern";
 import Loader from "./components/Loader";
@@ -258,12 +259,7 @@ export default function App() {
             </div>
 
             <div className="hidden md:flex items-center">
-              <a
-                href="#resume"
-                className="px-4 py-1.5 border border-indigo-500/50 hover:border-indigo-400 rounded-full text-sm text-indigo-300 hover:text-white hover:bg-indigo-500/10 transition"
-              >
-                Resume
-              </a>
+              <ResumeButton href="https://drive.google.com/uc?export=download&id=1rczEFeuyN_a_3YW6qSv4gpVPrOtyifkk" />
             </div>
 
             <button
@@ -343,13 +339,12 @@ export default function App() {
                 >
                   Contact
                 </a>
-                <a
-                  href="#resume"
-                  className="mt-2 inline-block px-3 py-1 border border-indigo-500/50 rounded-md text-indigo-300 text-center"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Resume
-                </a>
+                <div className="mt-3 pt-3 border-t border-slate-800/80 flex justify-center">
+                  <ResumeButton
+                    href="https://drive.google.com/uc?export=download&id=1rczEFeuyN_a_3YW6qSv4gpVPrOtyifkk"
+                    onClick={() => setMobileOpen(false)}
+                  />
+                </div>
               </div>
             </div>
           )}
