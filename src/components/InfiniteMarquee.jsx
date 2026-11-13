@@ -64,6 +64,8 @@ const MarqueeWrapper = styled.div`
     display: flex;
     width: max-content;
     will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
     animation: marquee ${({ $duration }) => $duration}s linear infinite;
     ${({ $reverse }) => $reverse && `animation-direction: reverse;`}
   }
@@ -90,10 +92,10 @@ const MarqueeWrapper = styled.div`
 
   @keyframes marquee {
     from {
-      transform: translateX(0%);
+      transform: translate3d(0%, 0, 0);
     }
     to {
-      transform: translateX(-50%);
+      transform: translate3d(-50%, 0, 0);
     }
   }
 

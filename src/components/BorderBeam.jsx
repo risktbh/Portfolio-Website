@@ -64,6 +64,7 @@ const BeamWrapper = styled.div`
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
     z-index: 2;
+    contain: strict;
   }
 
   .border-beam-light {
@@ -72,6 +73,9 @@ const BeamWrapper = styled.div`
     height: ${props => props.$size}px;
     offset-path: rect(0 100% 100% 0 round ${props => props.$borderRadius}px);
     offset-anchor: 50% 50%;
+    will-change: offset-distance;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
     animation: border-beam-loop ${props => props.$duration}s linear infinite;
     animation-delay: -${props => props.$delay}s;
     background: radial-gradient(

@@ -1,11 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = ({ text = "See Certifications", href = "#certifications", type = "type--C" }) => {
+const Button = ({ text = "About Me", href = "#about", type = "type--C", onClick }) => {
+  const handleClick = (e) => {
+    if (onClick) {
+      onClick(e);
+      return;
+    }
+    if (href && href.startsWith("#")) {
+      e.preventDefault();
+      const targetId = href.replace("#", "");
+      const el = document.getElementById(targetId);
+      if (el) {
+        const headerOffset = 80;
+        const targetTop = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: targetTop, behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <StyledWrapper>
-      <div className="container">
-        <a href={href} className={`button ${type}`}>
+      <div className="button-wrapper">
+        <a href={href} onClick={handleClick} className={`button ${type}`}>
           <div className="button__line" />
           <div className="button__line" />
           <span className="button__text">{text}</span>
@@ -15,7 +32,7 @@ const Button = ({ text = "See Certifications", href = "#certifications", type = 
       </div>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
   .type--A {
@@ -31,6 +48,9 @@ const StyledWrapper = styled.div`
     --back_color: rgba(99, 102, 241, 0.35);
   }
   .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     z-index: 0;
     width: 240px;
@@ -260,7 +280,7 @@ const StyledWrapper = styled.div`
     }
   }
 
-  .container {
+  .button-wrapper {
     display: flex;
     justify-content: flex-start;
     align-items: center;

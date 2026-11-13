@@ -1,6 +1,7 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
 import styled from "styled-components";
+import MusicPlayer from "./MusicPlayer";
 
 export default function Contact() {
   const emailAddress = "mardiantoriski5@gmail.com";
@@ -174,81 +175,68 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* 3 Cards Grid with Simple Icons (Aligned full width with sections above) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-          {/* 1. Location */}
-          <div className="p-6 rounded-xl bg-slate-950/60 border border-slate-800/80 flex flex-col justify-between">
-            <div className="flex items-center gap-3.5 mb-3">
-              <div className="w-10 h-10 rounded-lg bg-slate-950/80 border border-slate-800 flex items-center justify-center">
-                <img
-                  src="https://cdn.simpleicons.org/googlemaps/4285F4"
-                  alt="Google Maps"
-                  className="w-5 h-5 object-contain"
-                  loading="lazy"
-                />
-              </div>
-              <div>
-                <div className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Location</div>
-                <div className="text-white font-medium text-base">Yogyakarta, Indonesia</div>
+        {/* Contact Body: Vertical Cards (Left) + Music Player (Right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center mt-8">
+          {/* Left Column: 3 Contact Cards Stacked Vertically */}
+          <div className="lg:col-span-7 flex flex-col gap-4 w-full">
+            {/* 1. Location */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80 hover:border-indigo-500/30 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-3.5">
+                <div className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0">
+                  <img
+                    src="https://cdn.simpleicons.org/googlemaps/4285F4"
+                    alt="Google Maps"
+                    className="w-5 h-5 object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <div className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Location</div>
+                  <div className="text-white font-medium text-base">Indonesia</div>
+                </div>
               </div>
             </div>
-            <div className="text-xs text-slate-400 mt-2">Open to relocation</div>
+
+            {/* 2. Work Preference */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80 hover:border-indigo-500/30 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-3.5">
+                <div className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0">
+                  <img
+                    src="https://cdn.simpleicons.org/googlemeet/00897B"
+                    alt="Google Meet"
+                    className="w-5 h-5 object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <div className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Work Preference</div>
+                  <div className="text-white font-medium text-base">Remote, Hybrid, On-site</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Employment Type */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80 hover:border-indigo-500/30 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-3.5">
+                <div className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0">
+                  <img
+                    src="https://cdn.simpleicons.org/upwork/14A800"
+                    alt="Upwork"
+                    className="w-5 h-5 object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <div className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Employment Type</div>
+                  <div className="text-white font-medium text-base">Full-time, Freelance, Contract</div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* 2. Work Preference */}
-          <div className="p-6 rounded-xl bg-slate-950/60 border border-slate-800/80 flex flex-col justify-between">
-            <div className="flex items-center gap-3.5 mb-3">
-              <div className="w-10 h-10 rounded-lg bg-slate-950/80 border border-slate-800 flex items-center justify-center">
-                <img
-                  src="https://cdn.simpleicons.org/googlemeet/00897B"
-                  alt="Google Meet"
-                  className="w-5 h-5 object-contain"
-                  loading="lazy"
-                />
-              </div>
-              <div>
-                <div className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Work Preference</div>
-                <div className="text-white font-medium text-base">Remote, Hybrid, On-site</div>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-1.5 mt-2">
-              {["Remote", "Hybrid", "On-site"].map((pref) => (
-                <span
-                  key={pref}
-                  className="px-2.5 py-1 text-xs rounded-md bg-slate-900 border border-slate-800 text-slate-300 font-medium"
-                >
-                  {pref}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* 3. Employment Type */}
-          <div className="p-6 rounded-xl bg-slate-950/60 border border-slate-800/80 flex flex-col justify-between">
-            <div className="flex items-center gap-3.5 mb-3">
-              <div className="w-10 h-10 rounded-lg bg-slate-950/80 border border-slate-800 flex items-center justify-center">
-                <img
-                  src="https://cdn.simpleicons.org/upwork/14A800"
-                  alt="Upwork"
-                  className="w-5 h-5 object-contain"
-                  loading="lazy"
-                />
-              </div>
-              <div>
-                <div className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Employment Type</div>
-                <div className="text-white font-medium text-base">Full-time, Freelance, Contract</div>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-1.5 mt-2">
-              {["Full-time", "Freelance", "Contract"].map((type) => (
-                <span
-                  key={type}
-                  className="px-2.5 py-1 text-xs rounded-md bg-slate-900 border border-slate-800 text-slate-300 font-medium"
-                >
-                  {type}
-                </span>
-              ))}
-            </div>
+          {/* Right Column: Interactive Music Player */}
+          <div className="lg:col-span-5 flex justify-center items-center w-full">
+            <MusicPlayer />
           </div>
         </div>
       </div>

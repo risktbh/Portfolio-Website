@@ -12,7 +12,7 @@ const scanSweep = keyframes`
 
 const beamTravel = keyframes`
   0% {
-    left: -20%;
+    transform: translate3d(-20px, 0, 0);
     opacity: 0;
   }
   15% {
@@ -22,7 +22,7 @@ const beamTravel = keyframes`
     opacity: 1;
   }
   100% {
-    left: 120%;
+    transform: translate3d(140px, 0, 0);
     opacity: 0;
   }
 `;
@@ -67,7 +67,9 @@ const Wrapper = styled.span`
     position: absolute;
     top: 10%;
     bottom: 10%;
+    left: 0;
     width: 2px;
+    will-change: transform, opacity;
     background: ${props => props.$color};
     box-shadow:
       0 0 8px 1px ${props => props.$color},

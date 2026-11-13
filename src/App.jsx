@@ -23,6 +23,8 @@ import BorderBeam from "./components/BorderBeam";
 import NavTabs from "./components/NavTabs";
 import ScanText from "./components/ScanText";
 import BackToTop from "./components/BackToTop";
+import AboutCard from "./components/AboutCard";
+import AboutModal from "./components/AboutModal";
 
 const techStack = [
   { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/white" },
@@ -99,6 +101,7 @@ const certifications = [
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [aboutModalType, setAboutModalType] = useState(null);
 
   useEffect(() => {
     // Show entrance loader for 1.8 seconds on initial visit
@@ -119,6 +122,11 @@ export default function App() {
     let navTimeout = null;
 
     const handleWheel = (e) => {
+      // Do not hijack scrolling when a modal or dialog is open
+      if (document.body.style.overflow === "hidden" || e.target.closest('[role="dialog"]')) {
+        return;
+      }
+
       // Ignore subtle trackpad movements or horizontal scrolling
       if (Math.abs(e.deltaY) < 30 || Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
         return;
@@ -364,7 +372,7 @@ export default function App() {
               </p>
 
               <div className="mt-8 flex flex-wrap gap-5 items-center">
-                <Button text="See Certifications" href="#certifications" />
+                <Button text="About Me" href="#about" />
               </div>
 
               <div className="mt-10 flex flex-row gap-7 items-center text-slate-400">
@@ -427,93 +435,102 @@ export default function App() {
           {/* About */}
           <section
             id="about"
-            className="scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center rounded-2xl p-4 sm:p-6 bg-slate-900/60 backdrop-blur-md border border-slate-800/80 shadow-2xl snap-section"
+            className="scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center py-6 sm:py-8 snap-section"
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">About Me</h2>
-            <p className="mt-3 text-slate-300 w-full text-sm sm:text-base leading-relaxed">
-              I'm a developer focused on crafting intelligent and scalable web systems. My stack centers on{" "}
-              <span className="font-semibold text-indigo-400">Next.js</span>,{" "}
-              <span className="font-semibold text-cyan-400">LangChain</span>, and PostgreSQL. My work bridges{" "}
-              <span className="font-medium text-white">Full-Stack Development, AI Engineering, and Agentic Workflows</span>.
-            </p>
+            <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800/80 rounded-2xl lg:rounded-3xl p-6 sm:p-9 lg:p-12 shadow-2xl w-full">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+                About <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-sky-300 to-indigo-300">Me</span>
+              </h2>
+              <p className="mt-4 text-slate-300 text-base sm:text-lg lg:text-xl leading-relaxed max-w-5xl font-light">
+                I'm a developer focused on crafting intelligent and scalable web systems. My stack centers on{" "}
+                <span className="font-semibold text-indigo-400">Next.js</span>,{" "}
+                <span className="font-semibold text-cyan-400">LangChain</span>, and PostgreSQL. My work bridges{" "}
+                <span className="font-medium text-white">Full-Stack Development, AI Engineering, and Agentic Workflows</span>.
+              </p>
 
-            <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
-              {/* Experience */}
-              <div className="p-3 sm:p-4 border border-slate-800/90 rounded-xl bg-slate-950/60 hover:bg-slate-900/70 hover:border-indigo-500/50 transition duration-300 flex flex-col items-center text-center">
-                <FaLaptopCode className="w-8 h-8 text-indigo-400 mb-2" aria-hidden="true" />
-                <div className="text-base font-semibold text-white">Experience</div>
-                <div className="mt-0.5 text-slate-300 text-sm font-medium">2+ Years Professional</div>
+              <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 items-start">
+                {/* Experience */}
+                <AboutCard
+                  icon={<FaLaptopCode className="w-5 h-5" />}
+                  iconColor="#6366f1"
+                  title="Experience"
+                  description="2+ years of professional experience building intelligent and scalable web systems."
+                  badgeText="Timeline"
+                  onClick={() => setAboutModalType("experience")}
+                />
+
+                {/* Specialties */}
+                <AboutCard
+                  icon={<FaBrain className="w-5 h-5" />}
+                  iconColor="#a855f7"
+                  title="Specialties"
+                  description="AI Engineering · Full-Stack Development · Agentic Workflows"
+                  badgeText="Skills"
+                  onClick={() => setAboutModalType("specialties")}
+                />
+
+                {/* Education */}
+                <AboutCard
+                  icon={<FaUserGraduate className="w-5 h-5" />}
+                  iconColor="#10b981"
+                  title="Education"
+                  description="Bachelor's Degree in Computer Engineering"
+                  badgeText="Degree"
+                  onClick={() => setAboutModalType("education")}
+                />
               </div>
 
-              {/* Specialties */}
-              <div className="p-3 sm:p-4 border border-slate-800/90 rounded-xl bg-slate-950/60 hover:bg-slate-900/70 hover:border-indigo-500/50 transition duration-300 flex flex-col items-center text-center">
-                <div className="flex gap-2.5 mb-2">
-                  <FaBrain className="w-7 h-7 text-purple-400" aria-hidden="true" title="AI" />
-                  <FaLayerGroup className="w-7 h-7 text-sky-400" aria-hidden="true" title="Full-Stack" />
-                  <FaCogs className="w-7 h-7 text-emerald-400" aria-hidden="true" title="Automation" />
+              {/* Tech Stack */}
+              <div className="mt-7 sm:mt-9 pt-5 sm:pt-6 border-t border-slate-800/80">
+                <div className="mb-3">
+                  <TypewriterText
+                    phrases={[
+                      "Innovation.",
+                      "Creativity.",
+                      "Curiosity.",
+                      "Technology.",
+                      "Precision.",
+                      "Purpose."
+                    ]}
+                    prefix={"Built with "}
+                    typingSpeed={85}
+                    deletingSpeed={35}
+                    pause={1600}
+                    loop={true}
+                    cursorColor={"#cdb5eb"}
+                    style={{
+                      fontSize: 24,
+                      letterSpacing: "-.03em",
+                      fontWeight: 600
+                    }}
+                  />
                 </div>
-                <div className="text-base font-semibold text-white">Specialties</div>
-                <div className="mt-0.5 text-slate-300 text-sm font-medium">AI, Full-Stack, Automation</div>
-              </div>
 
-              {/* Education */}
-              <div className="p-3 sm:p-4 border border-slate-800/90 rounded-xl bg-slate-950/60 hover:bg-slate-900/70 hover:border-indigo-500/50 transition duration-300 flex flex-col items-center text-center">
-                <FaUserGraduate className="w-8 h-8 text-emerald-400 mb-2" aria-hidden="true" />
-                <div className="text-base font-semibold text-white">Education</div>
-                <div className="mt-0.5 text-slate-300 text-sm font-medium">B.Sc. in Computer Engineering</div>
-              </div>
-            </div>
-
-            {/* Tech Stack */}
-            <div className="mt-6 pt-5 border-t border-slate-800/80">
-              <div className="mb-3">
-                <TypewriterText
-                  phrases={[
-                    "Innovation.",
-                    "Creativity.",
-                    "Curiosity.",
-                    "Technology.",
-                    "Precision.",
-                    "Purpose."
-                  ]}
-                  prefix={"Built with "}
-                  typingSpeed={85}
-                  deletingSpeed={35}
-                  pause={1600}
-                  loop={true}
-                  cursorColor={"#cdb5eb"}
-                  style={{
-                    fontSize: 26,
-                    letterSpacing: "-.035em",
-                    fontWeight: 500
-                  }}
-                />
-              </div>
-
-              <div className="py-1">
-                <InfiniteMarquee
-                  items={techStack.map((tech, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-950/70 border border-slate-800/80 hover:border-indigo-500/50 hover:bg-slate-900/80 transition duration-200"
-                    >
-                      <img
-                        src={tech.icon}
-                        alt={tech.name}
-                        className="w-4 h-4 object-contain"
-                        loading="lazy"
-                      />
-                      <span className="font-medium text-slate-300 text-xs sm:text-sm whitespace-nowrap">
-                        {tech.name}
-                      </span>
-                    </div>
-                  ))}
-                  duration={25}
-                  gap={14}
-                  reverse={false}
-                  pauseOnHover={true}
-                  fade={true}
-                />
+                <div className="py-1">
+                  <InfiniteMarquee
+                    items={techStack.map((tech, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-slate-950/70 border border-slate-800/80 hover:border-indigo-500/50 hover:bg-slate-900/80 transition duration-200"
+                      >
+                        <img
+                          src={tech.icon}
+                          alt={tech.name}
+                          className="w-5 h-5 object-contain"
+                          loading="lazy"
+                        />
+                        <span className="font-semibold text-slate-200 text-sm sm:text-base whitespace-nowrap">
+                          {tech.name}
+                        </span>
+                      </div>
+                    ))}
+                    duration={25}
+                    gap={14}
+                    reverse={false}
+                    pauseOnHover={true}
+                    fade={true}
+                  />
+                </div>
               </div>
             </div>
           </section>
@@ -594,6 +611,13 @@ export default function App() {
 
         {/* Floating Back to Top Button */}
         <BackToTop />
+
+        {/* About Details Pop-up Modal */}
+        <AboutModal
+          isOpen={Boolean(aboutModalType)}
+          onClose={() => setAboutModalType(null)}
+          type={aboutModalType}
+        />
       </div>
     </div>
   </>

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Pattern = () => {
   return (
     <StyledWrapper aria-hidden="true">
-      <div className="container">
+      <div className="stars-container">
         <div id="stars" />
         <div id="stars2" />
         <div id="stars3" />
@@ -16,18 +16,27 @@ const Pattern = () => {
 const StyledWrapper = styled.div`
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
 
-  .container {
+  .stars-container {
     height: 100%;
     width: 100%;
-    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
     overflow: hidden;
     position: relative;
+    contain: strict;
+  }
+
+  #stars,
+  #stars2,
+  #stars3 {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
   }
 
   #stars {
@@ -2083,10 +2092,10 @@ const StyledWrapper = styled.div`
 
   @keyframes animStar {
     from {
-      transform: translateY(0px);
+      transform: translate3d(0, 0px, 0);
     }
     to {
-      transform: translateY(-2000px);
+      transform: translate3d(0, -2000px, 0);
     }
   }
 

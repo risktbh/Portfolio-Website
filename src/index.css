@@ -17,18 +17,11 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
   scroll-padding-top: 80px;
-}
-
-.snap-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
-    scroll-snap-type: none;
     scroll-behavior: auto;
   }
 }
