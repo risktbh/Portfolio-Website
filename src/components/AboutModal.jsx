@@ -11,6 +11,7 @@ import {
   FaAward,
   FaCode,
   FaCogs,
+  FaExternalLinkAlt,
 } from "react-icons/fa";
 import wisudaImage from "../assets/wisuda.jpg";
 
@@ -148,17 +149,29 @@ function EducationContent() {
           </div>
 
           {/* Undergraduate Thesis / Capstone Project */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-slate-950/60 border border-slate-800 flex flex-col gap-2.5 flex-1 justify-center">
-            <div className="text-xs uppercase font-semibold text-indigo-400 tracking-wider">
-              Undergraduate Thesis
+          <a
+            href="https://eprints.amikom.ac.id/id/eprint/31847/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group p-4 sm:p-5 rounded-2xl bg-slate-950/60 border border-slate-800 hover:border-indigo-500/60 hover:bg-slate-900/80 transition-all duration-200 flex flex-col gap-2.5 flex-1 justify-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+            aria-label="View Undergraduate Thesis on Amikom ePrints"
+          >
+            <div className="flex items-center justify-between">
+              <div className="text-xs uppercase font-semibold text-indigo-400 tracking-wider">
+                Undergraduate Thesis
+              </div>
+              <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 group-hover:text-indigo-300 font-medium transition">
+                <span>View Repository</span>
+                <FaExternalLinkAlt className="w-3 h-3" aria-hidden="true" />
+              </span>
             </div>
-            <div className="text-sm font-semibold text-slate-100 leading-snug">
+            <div className="text-sm font-semibold text-slate-100 group-hover:text-white leading-snug transition">
               Implementation Of Blockchain as a Shipping Status Audit Trail On The BelanjaTech E-Commerce Website
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
               Developed a Next.js and PostgreSQL e-commerce platform integrating post-quantum ML-DSA signatures and a blockchain audit trail to ensure tamper-proof logistics tracking, non-repudiation, and protection against API cyberattacks.
             </p>
-          </div>
+          </a>
         </div>
       </div>
 

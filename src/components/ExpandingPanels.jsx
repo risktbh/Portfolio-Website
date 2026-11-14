@@ -92,14 +92,6 @@ export default function ExpandingPanels({
               borderColor: isActive ? (item.accentColor ? `${item.accentColor}70` : undefined) : undefined,
             }}
           >
-            {item.image && (
-              <span
-                className={styles.image}
-                style={{ backgroundImage: `url(${JSON.stringify(item.image)})` }}
-                aria-hidden="true"
-              />
-            )}
-
             {/* Subtle shade gradient */}
             <span className={styles.shade} aria-hidden="true" />
 
@@ -119,38 +111,39 @@ export default function ExpandingPanels({
 
             {/* Expanded view */}
             <div className={styles.expandedContent} aria-hidden={!isActive}>
-              <div>
-                <div className={styles.topBar}>
-                  <div className={styles.numberBadge}>
-                    <span
-                      className={styles.statusDot}
-                      style={{
-                        background: item.accentColor || "#6366f1",
-                        boxShadow: `0 0 8px ${item.accentColor || "#6366f1"}`,
-                      }}
-                    />
-                    <span>{panelNumber}</span>
-                  </div>
-
-                  {item.category && (
-                    <span className={styles.categoryBadge}>{item.category}</span>
-                  )}
-                </div>
-
-                <div className={styles.titleArea}>
-                  <h3 className={styles.title}>{item.title}</h3>
-                  {item.subtitle && (
-                    <div
-                      className={styles.subtitle}
-                      style={{ color: item.accentColor || "#818cf8" }}
-                    >
-                      {item.subtitle}
+              {/* Top: Uniform compact text area (Title, Stack, Description) */}
+              <div className={styles.headerArea}>
+                {/* Baris 1: Nomor, Judul, Subtitle */}
+                <div className={styles.titleRow}>
+                  <div className={styles.titleArea}>
+                    <div className={styles.numberBadge}>
+                      <span
+                        className={styles.statusDot}
+                        style={{
+                          background: item.accentColor || "#6366f1",
+                          boxShadow: `0 0 8px ${item.accentColor || "#6366f1"}`,
+                        }}
+                      />
+                      <span>{panelNumber}</span>
                     </div>
-                  )}
+                    <h3 className={styles.title}>{item.title}</h3>
+                    {item.subtitle && (
+                      <>
+                        <span className={styles.titleSep} aria-hidden="true">·</span>
+                        <span
+                          className={styles.subtitle}
+                          style={{ color: item.accentColor || "#818cf8" }}
+                        >
+                          {item.subtitle}
+                        </span>
+                      </>
+                    )}
+                  </div>
                 </div>
 
+                {/* Baris 2: Tech Stack Badges (seragam di semua kartu) */}
                 {item.techStack && item.techStack.length > 0 && (
-                  <div className={styles.techStack} aria-label="Tech stack">
+                  <div className={styles.techStackRow} aria-label="Tech stack">
                     {item.techStack.map((tech, tIdx) => (
                       <span key={tIdx} className={styles.techBadge}>
                         {tech}
@@ -159,25 +152,53 @@ export default function ExpandingPanels({
                   </div>
                 )}
 
-                <p className={styles.description}>{item.description}</p>
+                {/* Baris 3: Deskripsi (seragam 1-2 baris di semua kartu) */}
+                {item.description && (
+                  <p className={styles.description}>{item.description}</p>
+                )}
               </div>
 
-              {item.impact && (
-                <div
-                  className={styles.impactBox}
-                  style={{
-                    borderLeftColor: item.accentColor || "#6366f1",
-                  }}
-                >
-                  <span
-                    className={styles.impactLabel}
-                    style={{ color: item.accentColor || "#a5b4fc" }}
+              {/* Bottom: Widescreen Panorama Screenshot Preview */}
+              <div className={styles.screenshotContainer}>
+                {item.image ? (
+                  <div className={styles.screenshotFrame}>
+                    <img
+                      src={item.image}
+                      alt={`${item.title} widescreen preview`}
+                      className={styles.screenshotImg}
+                      loading="lazy"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className={`${styles.screenshotFrame} ${styles.screenshotPlaceholder}`}
+                    style={{
+                      borderColor: item.accentColor ? `${item.accentColor}35` : undefined,
+                    }}
                   >
-                    Impact & Outcomes
-                  </span>
-                  <p className={styles.impactText}>{item.impact}</p>
-                </div>
-              )}
+                    <div
+                      className={styles.placeholderGlow}
+                      style={{
+                        background: `radial-gradient(ellipse at 50% 50%, ${item.accentColor || "#6366f1"}15 0%, transparent 70%)`,
+                      }}
+                      aria-hidden="true"
+                    />
+                    {item.icon && (
+                      <div
+                        className={styles.placeholderIcon}
+                        style={{ color: item.accentColor || "#818cf8" }}
+                        aria-hidden="true"
+                      >
+                        {item.icon}
+                      </div>
+                    )}
+                    <div className={styles.placeholderInfo}>
+                      <span className={styles.placeholderTitle}>{item.title} Preview</span>
+                      <span className={styles.placeholderSubtitle}>Screenshot panorama coming soon</span>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </button>
         );

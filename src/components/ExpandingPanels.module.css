@@ -16,8 +16,6 @@
   overflow: hidden;
   border-radius: var(--panel-radius, 18px);
   border: 1px solid rgba(148, 163, 184, 0.16);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   cursor: pointer;
   text-align: left;
   appearance: none;
@@ -29,11 +27,12 @@
   display: flex;
   flex-direction: column;
   font-family: var(--font-body);
+  will-change: flex;
+  transform: translateZ(0);
   transition:
-    flex 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.28s ease,
-    box-shadow 0.28s ease,
-    transform 0.28s ease;
+    flex 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
   user-select: none;
 }
 
@@ -91,13 +90,21 @@
   justify-content: space-between;
   padding: 24px 12px;
   z-index: 2;
-  transition: opacity 0.25s ease, background-color 0.2s ease;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.2s;
 }
 
 .panel[data-active="true"] .collapsedView {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  display: none;
+  transition:
+    opacity 0.15s ease,
+    visibility 0.15s;
 }
 
 .collapsedNumber {
@@ -168,61 +175,88 @@
 
 /* Active Panel Full Content */
 .expandedContent {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
-  padding: 24px 28px;
+  padding: 16px 20px 18px 20px;
   box-sizing: border-box;
-  animation: panelFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition:
+    opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.2s;
 }
 
 .expandedContent::-webkit-scrollbar {
   display: none;
 }
 
-.panel[data-active="false"] .expandedContent {
-  display: none;
+.panel[data-active="true"] .expandedContent {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition:
+    opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s,
+    visibility 0.35s 0.12s;
 }
 
-@keyframes panelFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Compact Top Area (Title, Stack, Description) - Uniform fixed height for consistent frame sizing across all cards */
+.headerArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 7px;
+  height: 96px;
+  min-height: 96px;
+  max-height: 96px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
-.topBar {
+.titleRow {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 16px;
+  min-width: 0;
+  height: 24px;
+  overflow: hidden;
+}
+
+.titleArea {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .numberBadge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
+  gap: 5px;
+  padding: 3px 8px;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.22);
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.02em;
   color: #a5b4fc;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .statusDot {
@@ -231,58 +265,64 @@
   border-radius: 999px;
   background: #6366f1;
   box-shadow: 0 0 8px #6366f1;
-}
-
-.categoryBadge {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  color: #94a3b8;
-  letter-spacing: 0.03em;
-}
-
-.titleArea {
-  margin-bottom: 14px;
+  flex-shrink: 0;
 }
 
 .title {
   font-family: var(--font-body);
-  font-size: 23px;
+  font-size: 18px;
   font-weight: 800;
   color: #ffffff;
-  letter-spacing: -0.025em;
-  line-height: 1.25;
+  letter-spacing: -0.02em;
+  line-height: 1;
   margin: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.titleSep {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .subtitle {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: #818cf8;
-  margin-top: 4px;
   letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.techStack {
+.techStackRow {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  overflow: hidden;
+  flex-wrap: nowrap;
 }
 
 .techBadge {
   display: inline-flex;
   align-items: center;
-  padding: 3px 10px;
+  padding: 2px 8px;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 600;
   color: #cbd5e1;
   background: rgba(15, 23, 42, 0.75);
   border: 1px solid rgba(148, 163, 184, 0.18);
-  border-radius: 999px;
+  border-radius: 6px;
   letter-spacing: -0.01em;
+  line-height: 1.35;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: border-color 0.2s, color 0.2s;
 }
 
@@ -293,45 +333,106 @@
 
 .description {
   font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 1.65;
+  font-size: 12.5px;
+  line-height: 1.45;
   color: #cbd5e1;
-  margin: 0 0 18px 0;
+  margin: 0;
   font-weight: 400;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 36px;
 }
 
-.impactBox {
+/* Widescreen Panorama Screenshot Area */
+.screenshotContainer {
+  flex: 1 1 0%;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+}
+
+.screenshotFrame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.75);
+  box-shadow:
+    0 8px 24px -4px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screenshotImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.panel:hover .screenshotImg {
+  transform: scale(1.015);
+}
+
+/* Honest placeholder frame when no screenshot is uploaded yet (R-23, R-38) */
+.screenshotPlaceholder {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 12px 16px;
-  background: rgba(15, 23, 42, 0.65);
-  border-left: 3px solid #6366f1;
-  border-top: 1px solid rgba(148, 163, 184, 0.12);
-  border-right: 1px solid rgba(148, 163, 184, 0.12);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
-  border-radius: 0 12px 12px 0;
-}
-
-.impactLabel {
-  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: #a5b4fc;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  gap: 12px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.9) 100%);
 }
 
-.impactText {
+.placeholderGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.placeholderIcon {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholderInfo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.placeholderTitle {
   font-family: var(--font-body);
-  font-size: 13px;
-  line-height: 1.55;
-  color: #cbd5e1;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: -0.01em;
   margin: 0;
+}
+
+.placeholderSubtitle {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #94a3b8;
+  letter-spacing: 0.01em;
 }
 
 /* Mobile & Tablet Reflow (R-03, Layoutmobile) */
@@ -344,12 +445,12 @@
   .panel {
     flex: none !important;
     width: 100%;
-    min-height: 58px;
+    min-height: 54px;
     height: auto;
   }
 
   .panel[data-active="false"] {
-    min-height: 58px;
+    min-height: 54px;
   }
 
   .collapsedView {
@@ -358,9 +459,16 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 18px;
-    height: 58px;
+    padding: 14px 16px;
+    height: 54px;
     box-sizing: border-box;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .panel[data-active="true"] .collapsedView {
+    display: none;
   }
 
   .collapsedTitle {
@@ -387,25 +495,73 @@
   }
 
   .expandedContent {
-    padding: 20px 18px;
+    position: relative;
+    inset: auto;
+    padding: 16px 14px 18px 14px;
     height: auto;
     overflow: visible;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+    transition: none;
+  }
+
+  .panel[data-active="false"] .expandedContent {
+    display: none;
+  }
+
+  .headerArea {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .titleRow {
+    height: auto;
+  }
+
+  .titleArea {
+    flex-wrap: wrap;
+    gap: 6px 8px;
   }
 
   .title {
-    font-family: var(--font-body);
-    font-size: 20px;
-    font-weight: 800;
+    font-size: 17px;
+  }
+
+  .titleSep {
+    display: none;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .techStackRow {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 6px;
   }
 
   .description {
-    font-family: var(--font-body);
-    font-size: 13px;
+    height: auto;
+    font-size: 12px;
+    -webkit-line-clamp: 3;
   }
 
-  .impactText {
-    font-family: var(--font-body);
-    font-size: 12px;
+  .screenshotContainer {
+    height: auto;
+    aspect-ratio: 16 / 9;
+    min-height: 180px;
+    margin-top: 10px;
+  }
+
+  .screenshotFrame {
+    height: 100%;
+    aspect-ratio: 16 / 9;
   }
 }
 

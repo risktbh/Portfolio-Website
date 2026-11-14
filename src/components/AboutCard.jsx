@@ -34,12 +34,18 @@ const AboutCard = ({ icon, iconColor, title, description, onClick, badgeText = "
 };
 
 const StyledWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  width: 100%;
+
   .card {
     position: relative;
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     width: 100%;
+    height: 100%;
     padding: 20px 24px;
     border-radius: 16px;
     overflow: hidden;
@@ -65,6 +71,7 @@ const StyledWrapper = styled.div`
     color: #ffffff;
     z-index: 1;
     width: 100%;
+    height: 100%;
     transition: all 0.3s ease;
   }
 

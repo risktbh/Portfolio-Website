@@ -29,6 +29,8 @@ import BackToTop from "./components/BackToTop";
 import AboutCard from "./components/AboutCard";
 import AboutModal from "./components/AboutModal";
 import ExpandingPanels from "./components/ExpandingPanels";
+import dokarImg from "./assets/Dokar/1.jpg";
+import elevateHrImg from "./assets/elevatehr.png";
 
 const techStack = [
   { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/white" },
@@ -107,37 +109,32 @@ const projectsData = [
     id: 1,
     title: "ElevateHR",
     subtitle: "Agentic HR People Assistant",
-    category: "AI & Agents",
     techStack: ["Next.js", "LangChain", "pgvector", "n8n"],
     description:
       "Engineered an AI-powered agentic People Assistant to autonomously process natural language inquiries regarding employee data and automate core HR workflows.",
-    impact:
-      "Integrated with internal HR systems for 24/7 automated resolution, significantly reducing manual administrative workload.",
     background:
       "linear-gradient(145deg, rgba(30, 27, 75, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%)",
     accentColor: "#6366f1",
     icon: <FaBrain className="w-full h-full text-indigo-400" aria-hidden="true" />,
+    image: elevateHrImg,
   },
   {
     id: 2,
     title: "KP-OWL LMS",
     subtitle: "Learning Management System",
-    category: "Enterprise LMS",
     techStack: ["PHP", "Laravel 7", "Blade", "Backend Architecture"],
     description:
       "Engineered comprehensive manual and automated notification management systems to enhance real-time communication within corporate LMS.",
-    impact:
-      "Maintained modular code architecture and resolved technical bugs to ensure high system reliability for enterprise training.",
     background:
       "linear-gradient(145deg, rgba(59, 7, 100, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%)",
     accentColor: "#a855f7",
     icon: <FaGraduationCap className="w-full h-full text-purple-400" aria-hidden="true" />,
+    image: null,
   },
   {
     id: 3,
     title: "BelanjaTech",
     subtitle: "Post-Quantum Security & Blockchain",
-    category: "Security & Web3",
     techStack: [
       "Next.js",
       "PostgreSQL",
@@ -147,27 +144,24 @@ const projectsData = [
     ],
     description:
       "Developed a tamper-proof e-commerce logistics system using post-quantum digital signatures (ML-DSA) and SHA-256 blockchain hashing.",
-    impact:
-      "Ensured strict data immutability and successfully secured transaction endpoints against modern cyber threats, including existential forgery and replay attacks.",
     background:
       "linear-gradient(145deg, rgba(6, 78, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%)",
     accentColor: "#10b981",
     icon: <FaShieldAlt className="w-full h-full text-emerald-400" aria-hidden="true" />,
+    image: null,
   },
   {
     id: 4,
     title: "Dokar Platform",
     subtitle: "HR & Employee Finance",
-    category: "Full-Stack Web & Mobile",
     techStack: ["React", "Next.js", "Node.js", "Java", "REST APIs"],
     description:
       "Architected a comprehensive full-stack web and native mobile application for processing sensitive personnel records and payroll data.",
-    impact:
-      "Delivered a dynamic interface and seamless real-time data synchronization across devices for employee self-service capabilities.",
     background:
       "linear-gradient(145deg, rgba(12, 74, 110, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%)",
     accentColor: "#0ea5e9",
     icon: <FaMobileAlt className="w-full h-full text-sky-400" aria-hidden="true" />,
+    image: dokarImg,
   },
 ];
 
@@ -317,10 +311,10 @@ export default function App() {
             >
               <ScanText
                 text={"Portfolio"}
-                color={"#6366f1"}
-                dimColor={"#4338ca"}
+                color={"#818cf8"}
+                dimColor={"#64748b"}
                 duration={4}
-                beamWidth={50}
+                beamWidth={28}
                 paused={false}
               />
             </a>
@@ -530,7 +524,7 @@ export default function App() {
                 <span className="font-medium text-white">Full-Stack Development, AI Engineering, and Agentic Workflows</span>.
               </p>
 
-              <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 items-start">
+              <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 items-stretch">
                 {/* Experience */}
                 <AboutCard
                   icon={<FaLaptopCode className="w-5 h-5" />}
@@ -634,7 +628,7 @@ export default function App() {
                 </div>
               </div>
 
-              <ExpandingPanels items={projectsData} height={470} expandRatio={4.8} />
+              <ExpandingPanels items={projectsData} height={500} expandRatio={4.8} />
             </div>
           </section>
 
