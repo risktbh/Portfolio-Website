@@ -10,6 +10,8 @@ import {
   FaLayerGroup,
   FaCogs,
   FaShieldAlt,
+  FaGraduationCap,
+  FaMobileAlt,
 } from "react-icons/fa";
 import { AnimatePresence, motion as Motion } from "framer-motion";
 import ibmLogo from "./assets/ibm-logo.svg";
@@ -26,6 +28,7 @@ import ScanText from "./components/ScanText";
 import BackToTop from "./components/BackToTop";
 import AboutCard from "./components/AboutCard";
 import AboutModal from "./components/AboutModal";
+import ExpandingPanels from "./components/ExpandingPanels";
 
 const techStack = [
   { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/white" },
@@ -99,6 +102,75 @@ const certifications = [
   },
 ];
 
+const projectsData = [
+  {
+    id: 1,
+    title: "ElevateHR",
+    subtitle: "Agentic HR People Assistant",
+    category: "AI & Agents",
+    techStack: ["Next.js", "LangChain", "pgvector", "n8n"],
+    description:
+      "Engineered an AI-powered agentic People Assistant to autonomously process natural language inquiries regarding employee data and automate core HR workflows.",
+    impact:
+      "Integrated with internal HR systems for 24/7 automated resolution, significantly reducing manual administrative workload.",
+    background:
+      "linear-gradient(145deg, rgba(30, 27, 75, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%)",
+    accentColor: "#6366f1",
+    icon: <FaBrain className="w-full h-full text-indigo-400" aria-hidden="true" />,
+  },
+  {
+    id: 2,
+    title: "KP-OWL LMS",
+    subtitle: "Learning Management System",
+    category: "Enterprise LMS",
+    techStack: ["PHP", "Laravel 7", "Blade", "Backend Architecture"],
+    description:
+      "Engineered comprehensive manual and automated notification management systems to enhance real-time communication within corporate LMS.",
+    impact:
+      "Maintained modular code architecture and resolved technical bugs to ensure high system reliability for enterprise training.",
+    background:
+      "linear-gradient(145deg, rgba(59, 7, 100, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%)",
+    accentColor: "#a855f7",
+    icon: <FaGraduationCap className="w-full h-full text-purple-400" aria-hidden="true" />,
+  },
+  {
+    id: 3,
+    title: "BelanjaTech",
+    subtitle: "Post-Quantum Security & Blockchain",
+    category: "Security & Web3",
+    techStack: [
+      "Next.js",
+      "PostgreSQL",
+      "Prisma ORM",
+      "Blockchain",
+      "ML-DSA",
+    ],
+    description:
+      "Developed a tamper-proof e-commerce logistics system using post-quantum digital signatures (ML-DSA) and SHA-256 blockchain hashing.",
+    impact:
+      "Ensured strict data immutability and successfully secured transaction endpoints against modern cyber threats, including existential forgery and replay attacks.",
+    background:
+      "linear-gradient(145deg, rgba(6, 78, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%)",
+    accentColor: "#10b981",
+    icon: <FaShieldAlt className="w-full h-full text-emerald-400" aria-hidden="true" />,
+  },
+  {
+    id: 4,
+    title: "Dokar Platform",
+    subtitle: "HR & Employee Finance",
+    category: "Full-Stack Web & Mobile",
+    techStack: ["React", "Next.js", "Node.js", "Java", "REST APIs"],
+    description:
+      "Architected a comprehensive full-stack web and native mobile application for processing sensitive personnel records and payroll data.",
+    impact:
+      "Delivered a dynamic interface and seamless real-time data synchronization across devices for employee self-service capabilities.",
+    background:
+      "linear-gradient(145deg, rgba(12, 74, 110, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%)",
+    accentColor: "#0ea5e9",
+    icon: <FaMobileAlt className="w-full h-full text-sky-400" aria-hidden="true" />,
+  },
+];
+
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -118,7 +190,7 @@ export default function App() {
       return;
     }
 
-    const sectionIds = ["home", "about", "certifications", "contact"];
+    const sectionIds = ["home", "about", "projects", "certifications", "contact"];
     let isNavigating = false;
     let navTimeout = null;
 
@@ -308,6 +380,21 @@ export default function App() {
                   }}
                 >
                   About Me
+                </a>
+                <a
+                  href="#projects"
+                  className="py-1 text-slate-300 hover:text-white transition"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMobileOpen(false);
+                    const el = document.getElementById("projects");
+                    if (el) {
+                      const top = el.getBoundingClientRect().top + window.pageYOffset - 85;
+                      window.scrollTo({ top, behavior: "smooth" });
+                    }
+                  }}
+                >
+                  Projects
                 </a>
                 <a
                   href="#certifications"
@@ -527,6 +614,27 @@ export default function App() {
                   />
                 </div>
               </div>
+            </div>
+          </section>
+
+          {/* Projects */}
+          <section
+            id="projects"
+            className="scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center py-6 sm:py-8 snap-section font-['Plus_Jakarta_Sans',sans-serif]"
+          >
+            <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800/80 rounded-2xl lg:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl w-full">
+              <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-3">
+                <div>
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+                    Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-sky-300 to-indigo-300">Projects</span>
+                  </h2>
+                  <p className="mt-3 text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-3xl font-light">
+                    A showcase of intelligent AI agents, enterprise-grade architectures, and secure cryptographic platforms engineered for production impact.
+                  </p>
+                </div>
+              </div>
+
+              <ExpandingPanels items={projectsData} height={470} expandRatio={4.8} />
             </div>
           </section>
 

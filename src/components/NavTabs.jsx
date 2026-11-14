@@ -31,6 +31,7 @@ const NavTabs = ({ className = "" }) => {
       const sections = [
         { id: "contact", el: document.getElementById("contact") },
         { id: "certifications", el: document.getElementById("certifications") },
+        { id: "projects", el: document.getElementById("projects") },
         { id: "about", el: document.getElementById("about") },
         { id: "home", el: document.getElementById("home") },
       ];
@@ -131,6 +132,28 @@ const NavTabs = ({ className = "" }) => {
           }}
         >
           About Me
+        </label>
+
+        {/* Projects */}
+        <input
+          className="cir-tabs__r"
+          type="radio"
+          name="cir-nav"
+          id="cir-r-projects"
+          checked={activeTab === "projects"}
+          onChange={() => handleSelect("projects")}
+        />
+        <label
+          className="cir-tabs__t"
+          htmlFor="cir-r-projects"
+          role="tab"
+          aria-selected={activeTab === "projects"}
+          onClick={(e) => {
+            e.preventDefault();
+            handleSelect("projects");
+          }}
+        >
+          Projects
         </label>
 
         {/* Certifications */}
