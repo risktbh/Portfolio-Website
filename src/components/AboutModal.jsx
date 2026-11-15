@@ -208,7 +208,7 @@ function EducationContent() {
             Digital Forensics
           </span>
           <span className="text-xs sm:text-[13px] font-medium px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-emerald-950/30 border border-emerald-500/25 text-emerald-200 hover:border-emerald-400/50 hover:bg-emerald-950/50 transition-colors">
-            Cyber Audit
+            Malware Analysis
           </span>
           <span className="text-xs sm:text-[13px] font-medium px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-emerald-950/30 border border-emerald-500/25 text-emerald-200 hover:border-emerald-400/50 hover:bg-emerald-950/50 transition-colors">
             Advanced Cryptography

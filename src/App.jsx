@@ -113,10 +113,9 @@ const projectsData = [
     subtitle: "E-commerce platform with Blockchain Security",
     techStack: [
       "Next.js",
-      "PostgreSQL",
-      "Prisma ORM",
       "Blockchain",
       "ML-DSA",
+      "SHA-256"
     ],
     description:
       "Built a full-stack e-commerce platform and engineered its security layer to protect transaction and logistics data using ML-DSA post-quantum signatures and SHA-256 hash chains.",
@@ -156,7 +155,7 @@ const projectsData = [
     id: 4,
     title: "Dokar Platform",
     subtitle: "HR & Employee Finance",
-    techStack: ["React", "Next.js", "Node.js", "Java", "REST APIs"],
+    techStack: ["React", "Next.js", "TypeScript", "Java", "REST APIs"],
     description:
       "Architected a comprehensive full-stack web and native mobile application for processing sensitive personnel records and payroll data.",
     background:
