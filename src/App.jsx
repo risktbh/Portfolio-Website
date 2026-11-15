@@ -31,6 +31,7 @@ import AboutModal from "./components/AboutModal";
 import ExpandingPanels from "./components/ExpandingPanels";
 import dokarImg from "./assets/Dokar/1.jpg";
 import elevateHrImg from "./assets/elevatehr.png";
+import belanjaTechImg from "./assets/belanjatech.png";
 
 const techStack = [
   { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/white" },
@@ -107,6 +108,38 @@ const certifications = [
 const projectsData = [
   {
     id: 1,
+    title: "BelanjaTech",
+    subtitle: "E-commerce platform with Blockchain Security",
+    techStack: [
+      "Next.js",
+      "PostgreSQL",
+      "Prisma ORM",
+      "Blockchain",
+      "ML-DSA",
+    ],
+    description:
+      "Built a full-stack e-commerce platform and engineered its security layer to protect transaction and logistics data using ML-DSA post-quantum signatures and SHA-256 hash chains.",
+    background:
+      "linear-gradient(145deg, rgba(6, 78, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%)",
+    accentColor: "#10b981",
+    icon: <FaShieldAlt className="w-full h-full text-emerald-400" aria-hidden="true" />,
+    image: belanjaTechImg,
+  },
+  {
+    id: 2,
+    title: "KP-OWL PT Krakatau Posco",
+    subtitle: "Learning Management System",
+    techStack: ["PHP", "Laravel", "CI/CD", "IT Support"],
+    description:
+      "Administered PT Krakatau Posco's OWL LMS, overseeing platform configurations and communication channels to support corporate training sessions and events.",
+    background:
+      "linear-gradient(145deg, rgba(59, 7, 100, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%)",
+    accentColor: "#a855f7",
+    icon: <FaGraduationCap className="w-full h-full text-purple-400" aria-hidden="true" />,
+    image: null,
+  },
+  {
+    id: 3,
     title: "ElevateHR",
     subtitle: "Agentic HR People Assistant",
     techStack: ["Next.js", "LangChain", "pgvector", "n8n"],
@@ -117,38 +150,6 @@ const projectsData = [
     accentColor: "#6366f1",
     icon: <FaBrain className="w-full h-full text-indigo-400" aria-hidden="true" />,
     image: elevateHrImg,
-  },
-  {
-    id: 2,
-    title: "KP-OWL LMS",
-    subtitle: "Learning Management System",
-    techStack: ["PHP", "Laravel 7", "Blade", "Backend Architecture"],
-    description:
-      "Engineered comprehensive manual and automated notification management systems to enhance real-time communication within corporate LMS.",
-    background:
-      "linear-gradient(145deg, rgba(59, 7, 100, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%)",
-    accentColor: "#a855f7",
-    icon: <FaGraduationCap className="w-full h-full text-purple-400" aria-hidden="true" />,
-    image: null,
-  },
-  {
-    id: 3,
-    title: "BelanjaTech",
-    subtitle: "Post-Quantum Security & Blockchain",
-    techStack: [
-      "Next.js",
-      "PostgreSQL",
-      "Prisma ORM",
-      "Blockchain",
-      "ML-DSA",
-    ],
-    description:
-      "Developed a tamper-proof e-commerce logistics system using post-quantum digital signatures (ML-DSA) and SHA-256 blockchain hashing.",
-    background:
-      "linear-gradient(145deg, rgba(6, 78, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%)",
-    accentColor: "#10b981",
-    icon: <FaShieldAlt className="w-full h-full text-emerald-400" aria-hidden="true" />,
-    image: null,
   },
   {
     id: 4,
@@ -299,50 +300,56 @@ export default function App() {
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Header */}
         <header className="sticky top-0 z-30 backdrop-blur-md bg-slate-950/70 border-b border-slate-800/80">
-          <div className="max-w-7xl mx-auto w-full px-6 lg:px-10 py-4 flex items-center justify-between">
-            <a
-              href="#home"
-              className="inline-flex items-center text-xl transition tracking-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-md"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-              aria-label="Portfolio Home"
-            >
-              <ScanText
-                text={"Portfolio"}
-                color={"#818cf8"}
-                dimColor={"#64748b"}
-                duration={4}
-                beamWidth={28}
-                paused={false}
-              />
-            </a>
+          <div className="w-full px-4 sm:px-8 lg:px-12 py-3.5 flex items-center justify-between relative">
+            {/* Left: Tulisan Portfolio di pojok kiri */}
+            <div className="flex-1 flex items-center justify-start">
+              <a
+                href="#home"
+                className="inline-flex items-center text-2xl sm:text-[26px] font-extrabold transition tracking-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-md"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                aria-label="Portfolio Home"
+              >
+                <ScanText
+                  text={"Portfolio"}
+                  color={"#818cf8"}
+                  dimColor={"#94a3b8"}
+                  duration={4}
+                  beamWidth={28}
+                  paused={false}
+                />
+              </a>
+            </div>
 
-            {/* Cir-tabs Navigation (Home, About Me, Certifications, Contact) */}
-            <div className="hidden md:flex items-center justify-center">
+            {/* Center: Cir-tabs Navigation (Home, About Me, Certifications, Contact) */}
+            <div className="hidden md:flex items-center justify-center flex-shrink-0">
               <NavTabs />
             </div>
 
-            <div className="hidden md:flex items-center">
-              <ResumeButton href="https://drive.google.com/uc?export=download&id=1rczEFeuyN_a_3YW6qSv4gpVPrOtyifkk" />
-            </div>
+            {/* Right: Tombol Resume di pojok kanan (desktop) & Hamburger (mobile) */}
+            <div className="flex-1 flex items-center justify-end gap-3">
+              <div className="hidden md:flex items-center">
+                <ResumeButton href="https://drive.google.com/uc?export=download&id=1rczEFeuyN_a_3YW6qSv4gpVPrOtyifkk" />
+              </div>
 
-            <button
-              className="md:hidden p-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/60 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle navigation menu"
-              aria-expanded={mobileOpen}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d={mobileOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-                />
-              </svg>
-            </button>
+              <button
+                className="md:hidden p-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/60 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                onClick={() => setMobileOpen(!mobileOpen)}
+                aria-label="Toggle navigation menu"
+                aria-expanded={mobileOpen}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d={mobileOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
 
           {/* Mobile menu */}

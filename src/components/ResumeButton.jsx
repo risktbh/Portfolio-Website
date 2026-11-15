@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const ResumeButton = ({
   href = "https://drive.google.com/uc?export=download&id=1rczEFeuyN_a_3YW6qSv4gpVPrOtyifkk",
-  text = "RESUME",
+  text = "Download CV",
   className = "",
   onClick,
 }) => {
@@ -15,7 +15,7 @@ const ResumeButton = ({
         rel="noopener noreferrer"
         className="btn"
         onClick={onClick}
-        aria-label="Download Resume"
+        aria-label="Download CV"
       >
         <span className="btn-text">{text}</span>
         <div className="container-stars">
@@ -38,7 +38,8 @@ const StyledWrapper = styled.div`
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 9.5rem;
+    min-width: 10.25rem;
+    padding: 0 1.25rem;
     height: 2.5rem;
     position: relative;
     overflow: hidden;
@@ -87,7 +88,7 @@ const StyledWrapper = styled.div`
     font-family: inherit;
     font-size: 13px;
     font-weight: 700;
-    letter-spacing: 2.5px;
+    letter-spacing: 1.2px;
     color: #ffffff;
     text-shadow: 0 0 6px rgba(255, 255, 255, 0.6), 0 0 12px rgba(129, 140, 248, 0.5);
     user-select: none;
