@@ -110,7 +110,7 @@ const projectsData = [
   {
     id: 1,
     title: "BelanjaTech",
-    subtitle: "E-commerce platform with Blockchain Security",
+    subtitle: "E-Commerce Platform with Blockchain Security",
     techStack: [
       "Next.js",
       "Blockchain",
