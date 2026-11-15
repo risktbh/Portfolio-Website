@@ -70,15 +70,16 @@ const StyledWrapper = styled.div`
     justify-content: center;
     box-shadow: 0px 0px 0px 4px rgba(180, 160, 255, 0.253), 0 8px 24px rgba(0, 0, 0, 0.5);
     cursor: pointer;
-    transition-duration: 0.3s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
     overflow: hidden;
     position: relative;
     user-select: none;
   }
 
   .svgIcon {
-    width: 12px;
-    transition-duration: 0.3s;
+    width: 14px;
+    height: 14px;
+    transition: transform 0.25s ease;
   }
 
   .svgIcon path {
@@ -86,35 +87,19 @@ const StyledWrapper = styled.div`
   }
 
   .button:hover {
-    width: 140px;
-    border-radius: 50px;
-    transition-duration: 0.3s;
-    background-color: rgb(181, 160, 255);
-    align-items: center;
-    box-shadow: 0px 0px 0px 4px rgba(181, 160, 255, 0.45), 0 10px 30px rgba(181, 160, 255, 0.3);
+    background-color: rgb(28, 28, 35);
+    border-color: rgba(180, 160, 255, 0.55);
+    box-shadow: 0px 0px 0px 5px rgba(180, 160, 255, 0.45), 0 10px 28px rgba(0, 0, 0, 0.65);
+    transform: translateY(-3px);
   }
 
   .button:hover .svgIcon {
-    transition-duration: 0.3s;
-    transform: translateY(-200%);
+    transform: translateY(-2px);
   }
 
-  .button::before {
-    position: absolute;
-    bottom: -20px;
-    content: "Back to Top";
-    color: #090a0f;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    font-size: 0px;
-    white-space: nowrap;
-  }
-
-  .button:hover::before {
-    font-size: 13px;
-    opacity: 1;
-    bottom: unset;
-    transition-duration: 0.3s;
+  .button:active {
+    transform: translateY(0);
+    box-shadow: 0px 0px 0px 3px rgba(180, 160, 255, 0.35), 0 4px 12px rgba(0, 0, 0, 0.5);
   }
 
   .button:focus-visible {

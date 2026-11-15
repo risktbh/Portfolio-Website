@@ -166,7 +166,8 @@ export default function ExpandingPanels({
                       src={item.image}
                       alt={`${item.title} widescreen preview`}
                       className={styles.screenshotImg}
-                      loading="lazy"
+                      loading="eager"
+                      decoding="async"
                     />
                   </div>
                 ) : (

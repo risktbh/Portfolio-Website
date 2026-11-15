@@ -16,13 +16,14 @@ export default function Contact() {
           className="unique-button"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Engage via Email"
         >
           <div className="svg-wrap">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              width={24}
-              height={24}
+              width={18}
+              height={18}
               aria-hidden="true"
             >
               <path fill="none" d="M0 0h24v24H0z" />
@@ -39,57 +40,79 @@ export default function Contact() {
   };
 
   const StyledWrapper = styled.div`
+    display: inline-flex;
+
     .unique-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.6rem;
+      gap: 8px;
       position: relative;
-      width: 150px;
-      height: 48px;
-      padding: 10px 24px;
-      font-size: 15px;
+      height: 42px;
+      padding: 0 20px;
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
       text-decoration: none;
       color: #fff;
       background-color: #6366f1;
-      border: none;
-      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
       overflow: hidden;
       cursor: pointer;
-      transition: 0.3s all ease-in-out;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
     }
 
     .unique-button:hover {
-      transition: 0.3s all ease-in-out;
-      box-shadow: 5px 10px 30px #6366f1;
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.5);
+      background-color: #4f46e5;
     }
 
-    .unique-button span {
-      display: block;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .unique-button:hover span {
-      transform: translateX(7em);
-    }
-
-    .unique-button:hover .svg-wrap {
-      animation: fly-1 0.6s ease-in-out infinite alternate;
+    .unique-button .svg-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      position: relative;
       z-index: 1;
+      margin-left: 1px;
+      transition: transform 0.3s ease-in-out;
     }
 
     .unique-button svg {
       display: block;
+      width: 18px;
+      height: 18px;
       transform-origin: center center;
       transition: transform 0.3s ease-in-out;
     }
 
+    .unique-button span {
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      line-height: 1;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .unique-button:hover span {
+      transform: translateX(4rem);
+      opacity: 0;
+    }
+
+    .unique-button:hover .svg-wrap {
+      animation: fly-1 0.6s ease-in-out infinite alternate;
+    }
+
     .unique-button:hover svg {
-      transform: translateX(2.5em) rotate(45deg) scale(1.2);
+      transform: translateX(1.4rem) rotate(45deg) scale(1.15);
     }
 
     .unique-button:active {
-      transform: scale(0.95);
+      transform: scale(0.96);
     }
 
     @keyframes fly-1 {

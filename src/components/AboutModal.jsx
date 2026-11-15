@@ -111,6 +111,8 @@ function EducationContent() {
               className="w-full h-full min-h-[280px] object-cover object-top transition duration-300 group-hover:scale-105"
               width={350}
               height={450}
+              loading="eager"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
             <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">

@@ -32,6 +32,7 @@ import ExpandingPanels from "./components/ExpandingPanels";
 import dokarImg from "./assets/Dokar/1.jpg";
 import elevateHrImg from "./assets/elevatehr.png";
 import belanjaTechImg from "./assets/belanjatech.png";
+import wisudaImage from "./assets/wisuda.jpg";
 
 const techStack = [
   { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/white" },
@@ -166,17 +167,87 @@ const projectsData = [
   },
 ];
 
+// Helper to preload and decode images into memory before entrance loader finishes
+const preloadImage = (src) => {
+  return new Promise((resolve) => {
+    if (!src || typeof src !== "string") {
+      resolve();
+      return;
+    }
+    const img = new Image();
+    img.src = src;
+
+    if (img.complete) {
+      if (typeof img.decode === "function") {
+        img.decode().then(resolve).catch(resolve);
+      } else {
+        resolve();
+      }
+      return;
+    }
+
+    img.onload = () => {
+      if (typeof img.decode === "function") {
+        img.decode().then(resolve).catch(resolve);
+      } else {
+        resolve();
+      }
+    };
+
+    img.onerror = () => {
+      // Resolve safely so any failed asset does not block the site
+      resolve();
+    };
+  });
+};
+
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [aboutModalType, setAboutModalType] = useState(null);
 
   useEffect(() => {
-    // Show entrance loader for 1.8 seconds on initial visit
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1800);
-    return () => clearTimeout(timer);
+    let isMounted = true;
+
+    // Assets to preload and decode into memory before completing entrance
+    const assetsToPreload = [
+      wisudaImage, // AboutModal education detail popup image
+      profileImage, // Hero profile photo
+      belanjaTechImg, // Featured project 01
+      elevateHrImg, // Featured project 03
+      dokarImg, // Featured project 04
+      ibmLogo, // IBM certification logo
+      ...techStack.map((tech) => tech.icon).filter(Boolean),
+      "https://cdn.simpleicons.org/cisco/1BA0D7",
+      "https://cdn.simpleicons.org/googlemaps/4285F4",
+      "https://cdn.simpleicons.org/googlemeet/00897B",
+      "https://cdn.simpleicons.org/upwork/14A800",
+    ];
+
+    // Image preloading and decoding promise
+    const imagesPromise = Promise.allSettled(assetsToPreload.map(preloadImage));
+
+    // Web font readiness check
+    const fontsPromise = document.fonts ? document.fonts.ready.catch(() => {}) : Promise.resolve();
+
+    // Minimum display time (1.6s) to allow astronaut entrance animation to play gracefully
+    const minTimePromise = new Promise((resolve) => setTimeout(resolve, 1600));
+
+    // Maximum safety fallback timeout (4s) so slow networks don't get stuck
+    const safetyTimeoutPromise = new Promise((resolve) => setTimeout(resolve, 4000));
+
+    Promise.race([
+      Promise.all([imagesPromise, fontsPromise, minTimePromise]),
+      safetyTimeoutPromise,
+    ]).then(() => {
+      if (isMounted) {
+        setLoading(false);
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Section-by-section full page wheel navigation
