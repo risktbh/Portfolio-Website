@@ -130,7 +130,7 @@ const projectsData = [
     id: 2,
     title: "KP-OWL PT Krakatau Posco",
     subtitle: "Learning Management System",
-    techStack: ["PHP", "Laravel", "CI/CD", "IT Support"],
+    techStack: ["PHP", "Laravel", "CI/CD", "Training Team"],
     description:
       "Administered PT Krakatau Posco's OWL LMS, overseeing platform configurations and communication channels to support corporate training sessions and events.",
     background:

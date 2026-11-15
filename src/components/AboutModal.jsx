@@ -163,12 +163,12 @@ function EducationContent() {
                 Undergraduate Thesis
               </div>
               <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 group-hover:text-indigo-300 font-medium transition">
-                <span>View Repository</span>
+                <span>View</span>
                 <FaExternalLinkAlt className="w-3 h-3" aria-hidden="true" />
               </span>
             </div>
             <div className="text-sm font-semibold text-slate-100 group-hover:text-white leading-snug transition">
-              Implementation Of Blockchain as a Shipping Status Audit Trail On The BelanjaTech E-Commerce Website
+              Implementation of Blockchain as a Shipping Status Audit Trail on the BelanjaTech E-Commerce Website
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
               Developed a Next.js and PostgreSQL e-commerce platform integrating post-quantum ML-DSA signatures and a blockchain audit trail to ensure tamper-proof logistics tracking, non-repudiation, and protection against API cyberattacks.
@@ -182,7 +182,7 @@ function EducationContent() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div className="text-xs uppercase font-semibold text-slate-400 tracking-wider flex items-center gap-2">
             <FaBrain className="w-3.5 h-3.5 text-indigo-400" aria-hidden="true" />
-            <span>Core Academic Disciplines</span>
+            <span>Core Academic</span>
           </div>
           <div className="flex items-center gap-3 text-[11px] text-slate-400">
             <span className="flex items-center gap-1.5">
@@ -202,7 +202,7 @@ function EducationContent() {
             Cyber Security
           </span>
           <span className="text-xs sm:text-[13px] font-medium px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-emerald-950/30 border border-emerald-500/25 text-emerald-200 hover:border-emerald-400/50 hover:bg-emerald-950/50 transition-colors">
-            Network Defense
+            Network Security
           </span>
           <span className="text-xs sm:text-[13px] font-medium px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-emerald-950/30 border border-emerald-500/25 text-emerald-200 hover:border-emerald-400/50 hover:bg-emerald-950/50 transition-colors">
             Digital Forensics
@@ -242,7 +242,7 @@ function ExperienceContent() {
     {
       role: "Learning Management System Intern",
       company: "PT. Krakatau Posco",
-      period: "Sep 2026 - Present",
+      period: "2026 - Present",
       type: "Internship",
       achievements: [
         "Implemented and maintained the Krakatau Posco Learning Management System (LMS) to streamline corporate training and integrate scalable e-learning modules.",
@@ -253,8 +253,8 @@ function ExperienceContent() {
     {
       role: "Full-Stack Developer",
       company: "PT Muti Jaya Sejahtera",
-      period: "Oct 2025 - Jan 2026",
-      type: "Contract / Internship",
+      period: "2025",
+      type: "Contract",
       achievements: [
         "Developed and maintained responsive web and mobile applications for internal Human Resources and employee finance management.",
         "Designed and managed complex data structures and application data flows to support reliable storage, retrieval, and system integrity.",
