@@ -3,168 +3,165 @@ import { motion as Motion } from "framer-motion";
 import styled from "styled-components";
 import MusicPlayer from "./MusicPlayer";
 
+const StyledWrapper = styled.div`
+  display: inline-flex;
+
+  button,
+  a {
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    background: royalblue;
+    color: white;
+    height: 40px;
+    padding: 0 18px 0 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(65, 105, 225, 0.35);
+  }
+
+  button:hover,
+  a:hover {
+    background: #3b60d1;
+    box-shadow: 0 6px 18px rgba(65, 105, 225, 0.45);
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid #93c5fd;
+    outline-offset: 2px;
+  }
+
+  button .svg-wrapper-1,
+  a .svg-wrapper-1,
+  button .svg-wrapper,
+  a .svg-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button span,
+  a span {
+    display: block;
+    margin-left: 0.35em;
+    transition: all 0.3s ease-in-out;
+  }
+
+  button svg,
+  a svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  button:hover .svg-wrapper,
+  a:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+  }
+
+  button:hover svg,
+  a:hover svg {
+    transform: translateX(1.1em) rotate(45deg) scale(1.15);
+  }
+
+  button:hover span,
+  a:hover span {
+    transform: translateX(4.5em);
+    opacity: 0;
+  }
+
+  button:active,
+  a:active {
+    transform: scale(0.96);
+  }
+
+  @keyframes fly-1 {
+    from {
+      transform: translateY(0.1em);
+    }
+
+    to {
+      transform: translateY(-0.1em);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    button:hover .svg-wrapper,
+    a:hover .svg-wrapper {
+      animation: none;
+    }
+    button,
+    a,
+    button span,
+    a span,
+    button svg,
+    a svg {
+      transition: none;
+    }
+  }
+`;
+
+const ContactButton = ({ href, text = "Send", onClick }) => {
+  const content = (
+    <>
+      <div className="svg-wrapper-1">
+        <div className="svg-wrapper">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width={18}
+            height={18}
+            aria-hidden="true"
+          >
+            <path fill="none" d="M0 0h24v24H0z" />
+            <path
+              fill="currentColor"
+              d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+            />
+          </svg>
+        </div>
+      </div>
+      <span>{text}</span>
+    </>
+  );
+
+  return (
+    <StyledWrapper>
+      {href ? (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${text} via Email`}
+          onClick={onClick}
+        >
+          {content}
+        </a>
+      ) : (
+        <button type="button" onClick={onClick} aria-label={`${text} via Email`}>
+          {content}
+        </button>
+      )}
+    </StyledWrapper>
+  );
+};
+
 export default function Contact() {
   const emailAddress = "mardiantoriski5@gmail.com";
 
   const getInTouchHref = `mailto:${emailAddress}?subject=Portfolio%20Inquiry&body=Hi%20Riski,%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20connect%20regarding...`;
-
-  const GetInTouchButton = ({ href }) => {
-    return (
-      <StyledWrapper>
-        <a
-          href={href}
-          className="unique-button"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Engage via Email"
-        >
-          <div className="svg-wrap">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width={18}
-              height={18}
-              aria-hidden="true"
-            >
-              <path fill="none" d="M0 0h24v24H0z" />
-              <path
-                fill="currentColor"
-                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-              />
-            </svg>
-          </div>
-          <span>Engage</span>
-        </a>
-      </StyledWrapper>
-    );
-  };
-
-  const StyledWrapper = styled.div`
-    display: inline-flex;
-
-    .unique-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      position: relative;
-      height: 42px;
-      padding: 0 20px;
-      font-size: 14.5px;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      text-decoration: none;
-      color: #fff;
-      background-color: #6366f1;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 12px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
-    }
-
-    .unique-button:hover {
-      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.5);
-      background-color: #4f46e5;
-    }
-
-    .unique-button .svg-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
-      margin-left: 1px;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .unique-button svg {
-      display: block;
-      width: 18px;
-      height: 18px;
-      transform-origin: center center;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .unique-button span {
-      display: inline-block;
-      position: relative;
-      z-index: 1;
-      line-height: 1;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .unique-button:hover span {
-      transform: translateX(4rem);
-      opacity: 0;
-    }
-
-    .unique-button:hover .svg-wrap {
-      animation: fly-1 0.6s ease-in-out infinite alternate;
-    }
-
-    .unique-button:hover svg {
-      transform: translateX(1.4rem) rotate(45deg) scale(1.15);
-    }
-
-    .unique-button:active {
-      transform: scale(0.96);
-    }
-
-    @keyframes fly-1 {
-      from {
-        transform: translateY(0.1em);
-      }
-
-      to {
-        transform: translateY(-0.1em);
-      }
-    }
-
-    .unique-button::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 0;
-      height: 80%;
-      border-bottom-left-radius: 60px;
-      border-top-right-radius: 60px;
-      border-top-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      background-color: #1e1b4b;
-      transition: all 0.2s ease-in-out;
-    }
-
-    .unique-button:hover::before {
-      width: 100%;
-    }
-
-    .unique-button::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80%;
-      height: 0;
-      border-bottom-left-radius: 20px;
-      border-top-right-radius: 20px;
-      border-top-left-radius: 60px;
-      border-bottom-right-radius: 60px;
-      background-color: #1e1b4b;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .unique-button:hover::after {
-      height: 100%;
-    }
-  `;
 
   return (
     <Motion.section
@@ -194,7 +191,7 @@ export default function Contact() {
               <span>Open to Opportunities</span>
             </div>
 
-            <GetInTouchButton href={getInTouchHref} />
+            <ContactButton href={getInTouchHref} text="Send" />
           </div>
         </div>
 

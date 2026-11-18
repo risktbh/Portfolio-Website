@@ -26,6 +26,7 @@ import BorderBeam from "./components/BorderBeam";
 import NavTabs from "./components/NavTabs";
 import ScanText from "./components/ScanText";
 import BackToTop from "./components/BackToTop";
+import AIAssistantButton from "./components/AIAssistantButton";
 import AboutCard from "./components/AboutCard";
 import AboutModal from "./components/AboutModal";
 import ExpandingPanels from "./components/ExpandingPanels";
@@ -783,8 +784,11 @@ export default function App() {
           <Contact />
         </main>
 
-        {/* Floating Back to Top Button */}
+        {/* Floating Back to Top Button (Bottom-Right) */}
         <BackToTop />
+
+        {/* Floating AI Assistant Button (Bottom-Left) */}
+        <AIAssistantButton />
 
         {/* About Details Pop-up Modal */}
         <AboutModal

@@ -45,7 +45,7 @@ const BackToTop = () => {
 
 const StyledWrapper = styled.div`
   position: fixed;
-  bottom: 1.5rem;
+  bottom: 5.75rem;
   right: 1.5rem;
   z-index: 50;
   opacity: ${props => (props.$visible ? 1 : 0)};
@@ -54,7 +54,7 @@ const StyledWrapper = styled.div`
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
   @media (min-width: 640px) {
-    bottom: 2rem;
+    bottom: 6.25rem;
     right: 2rem;
   }
 
